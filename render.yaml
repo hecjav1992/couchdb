@@ -4,24 +4,11 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./Dockerfile
-
     envVars:
       - key: COUCHDB_USER
-        value: admin        # cámbialo por tu usuario
+        value: admin
       - key: COUCHDB_PASSWORD
-        value: admin123     # cámbialo por tu contraseña
-      - key: COUCHDB_SECRET
-        value: secretcookie # cookie secret para clústeres, puedes dejarlo fijo
-
-    # Puerto expuesto por CouchDB
+        value: admin
+    healthCheckPath: /
     ports:
       - 5984
-
-    # Health check básico
-    healthCheckPath: /
-
-    # Disco persistente para que los datos no se borren
-    disk:
-      name: couchdb-data
-      mountPath: /opt/couchdb/data
-      sizeGB: 1   # tamaño mínimo, puedes aumentar
